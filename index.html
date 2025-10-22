@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ScanResume</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <header class="header">
+        <h1><span aria-hidden="true">🚀</span> ScanResume</h1>
+        <p class="subtitle"><span aria-hidden="true">🧠</span> Analyze resumes against a job description, get an ATS score <span aria-hidden="true">📈</span>, keyword coverage <span aria-hidden="true">🔎</span>, AI insights, and actionable suggestions.</p>
+    </header>
+
+    <main class="container">
+        <section class="panel">
+            <h2><span aria-hidden="true">🧰</span> Input</h2>
+            <form id="resumeForm" class="form">
+                <div class="upload-group">
+                    <label class="label">Upload Resume (PDF, DOCX, TXT)</label>
+                    <div id="dropzone" class="dropzone" tabindex="0" role="button" aria-label="Upload resume by clicking or dragging a file here">
+                        <input type="file" id="resume" accept=".pdf,.doc,.docx,.txt" hidden />
+                        <div class="dropzone-content">
+                            <div class="drop-icon" aria-hidden="true">📄</div>
+                            <div>
+                                <div class="drop-title">Drag & Drop your resume here</div>
+                                <div class="drop-subtitle">or <span class="pick-file" id="pickFile">browse</span> to choose a file</div>
+                            </div>
+                        </div>
+                        <div id="fileInfo" class="file-info" aria-live="polite"></div>
+                    </div>
+                </div>
+
+                <div class="field-group">
+                    <label for="jobDescription" class="label">Job Description (paste text)</label>
+                    <textarea id="jobDescription" rows="8" placeholder="Paste the job description here to tailor the analysis and keyword matching..."></textarea>
+                </div>
+
+                <div class="field-group">
+                    <label for="customKeywords" class="label">Custom Keywords (comma-separated, optional)</label>
+                    <input type="text" id="customKeywords" placeholder="e.g., React, Node.js, AWS, Microservices, REST" />
+                </div>
+
+                <div class="actions">
+                    <button type="submit" class="btn primary"><span aria-hidden="true">⚙️</span> Analyze Resume</button>
+                    <button type="button" id="useSampleResume" class="btn"><span aria-hidden="true">📄</span> Use Sample Resume</button>
+                    <button type="button" id="useSampleJD" class="btn"><span aria-hidden="true">🧾</span> Use Sample Job Description</button>
+                    <button type="button" id="resetForm" class="btn danger"><span aria-hidden="true">♻️</span> Reset</button>
+                </div>
+            </form>
+        </section>
+
+        
+        <section id="report" class="panel report" aria-live="polite">
+            <div class="placeholder">
+                <div class="placeholder-title"><span aria-hidden="true">🧭</span> Your report will appear here</div>
+                <div class="placeholder-text">Upload a resume and add a job description to generate a comprehensive ATS analysis. Enable AI to get semantic insights and tailored content.</div>
+            </div>
+        </section>
+
+        <section class="panel footer-actions" id="exportActions" hidden>
+            <div class="actions">
+                <button type="button" id="downloadReport" class="btn"><span aria-hidden="true">💾</span> Download Report (HTML)</button>
+                <button type="button" id="printReport" class="btn"><span aria-hidden="true">🖨️</span> Print</button>
+                <button type="button" id="aiGenerateSummary" class="btn"><span aria-hidden="true">✍️</span> AI: Generate Tailored Summary</button>
+                <button type="button" id="aiGenerateBullets" class="btn"><span aria-hidden="true">🎯</span> AI: Generate Keyword-Rich Bullets</button>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>Client-side demo for educational purposes. For production use, integrate with a backend, robust parsers, and secure API proxying.</p>
+    </footer>
+
+    <!-- External libraries for parsing PDF and DOCX in the browser -->
+    <!-- pdf.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
+    <!-- mammoth.js for DOCX -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.4.9/mammoth.browser.min.js"></script>
+
+    <!-- Main application script -->
+    <script src="analyzer.js"></script>
+</body>
+</html>
